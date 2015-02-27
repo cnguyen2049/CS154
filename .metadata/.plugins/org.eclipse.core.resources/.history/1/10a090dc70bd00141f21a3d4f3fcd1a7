@@ -1,0 +1,32 @@
+public class Choice implements RegEx{
+	RegEx first;
+	RegEx second;
+	public Choice (RegEx first, RegEx second){
+		this.first = first;
+		this.second = second;
+	}
+	
+
+	@Override
+	public boolean matches(String s) {
+		//System.out.println(first.toString());
+		//System.out.println(second.toString());
+		int firstLast = s.lastIndexOf(first.toString());
+		//System.out.println(index);
+		int startSecond = s.indexOf(second.toString());
+		
+		if(firstStart==0){
+			String str1 = s.substring(0,);
+		}
+		//System.out.println(index2);
+		String str1 = s.substring(0,firstLast+1);
+		//System.out.println(str1);
+		String str2 = s.substring(startSecond,s.length());
+		//System.out.println(str2);
+		if(first.matches(str1) || second.matches(str2)){
+			return true;
+		}
+		return false;
+	}
+
+}

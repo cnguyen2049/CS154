@@ -6,7 +6,50 @@ import java.util.function.*;
  * @author Chris Nguyen 007405892
  */
 public class Operations {
-	
+	   public  static <T> Set<T> intersect(Set<T> a, Set<T> b) {
+		   /*
+		   a.removeAll(b);
+		   Set<T> intersection = new HashSet<T>(a);
+		   intersection.retainAll(b);
+		   return intersection;
+		   */
+		   Set<T> intersection = new HashSet<T>();
+		   for(T element :a){
+			   if(b.contains(element)){
+				   intersection.add(element);
+			   }
+		   }
+		   return intersection;
+	   }
+	   public  static <T> Set<T> union(Set<T> a, Set<T> b) {
+		   Set<T> union = new HashSet<T>();
+		   union = a;
+		   for(T element:b){
+			   if(!a.contains(element)){
+				   union.add(element);
+			   }
+		   }
+		   return union;
+	   }
+	   public  static <T> Set<T> diff(Set<T> a, Set<T> b) {
+		   Set<T> diff = new HashSet<T>();
+		   diff = a;
+		   for(T e:b){
+			   if(a.contains(e)){
+				   diff.remove(e);
+			   }
+		   }
+		   return diff;
+	   }
+	   public  static <T> boolean subset(Set<T> a, Set<T> b) {
+		   
+		   for(T x : b){
+			   if(!(a.contains(x))){
+				   return false;
+			   }
+		   }
+		   return true;
+	   }
 public static Map<Integer,String> Unicode;
 	
 	static void Unicode(){

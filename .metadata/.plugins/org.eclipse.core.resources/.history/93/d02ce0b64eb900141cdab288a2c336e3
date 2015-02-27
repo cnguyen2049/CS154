@@ -1,0 +1,19 @@
+
+public class Option implements RegEx{
+	private RegEx base;
+
+	@Override
+	public boolean matches(String s) {
+		
+		return s.isEmpty();
+	}
+
+	public RegEx getBase() {
+		return base;
+	}
+
+	public void setBase(RegEx base) {
+		this.base = base;
+	}
+
+}

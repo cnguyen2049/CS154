@@ -1,0 +1,12 @@
+
+public class Option implements RegEx{
+	RegEx base;
+	
+	@Override
+	public boolean matches(String s) {
+
+		return s.isEmpty() || base.matches(s);
+	}
+
+
+}

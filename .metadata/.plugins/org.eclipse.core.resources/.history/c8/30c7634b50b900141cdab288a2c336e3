@@ -1,0 +1,27 @@
+
+public class Option implements RegEx{
+	private RegEx base;
+
+	@Override
+	public boolean matches(String s) {
+		int len = s.length();
+		System.out.println(len);
+		while(len>0){
+			System.out.println(s.charAt(len));
+			if(s.charAt(len) == '?'){
+				return true;
+			}
+			len--;
+		}
+		return s.isEmpty();
+	}
+
+	public RegEx getBase() {
+		return base;
+	}
+
+	public void setBase(RegEx base) {
+		this.base = base;
+	}
+
+}

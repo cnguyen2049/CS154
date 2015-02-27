@@ -1,0 +1,13 @@
+
+
+public class Tester {
+
+	public static void Test() {
+		
+	}
+
+public static void main(String [] args){
+	Test();
+	
+	}
+}

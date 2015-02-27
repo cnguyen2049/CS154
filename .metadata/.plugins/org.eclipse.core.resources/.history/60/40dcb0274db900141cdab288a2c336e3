@@ -1,0 +1,11 @@
+
+public class Option implements RegEx{
+
+	@Override
+	public boolean matches(String s) {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
+
+}

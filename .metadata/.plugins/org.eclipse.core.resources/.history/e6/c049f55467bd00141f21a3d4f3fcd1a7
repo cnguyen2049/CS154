@@ -1,0 +1,14 @@
+
+
+public class Tester {
+
+	public static void Test() {
+		Literal zero = new Literal("0");
+		System.out.println(zero.matches("1"));
+	}
+
+public static void main(String [] args){
+	Test();
+	
+	}
+}
