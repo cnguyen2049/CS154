@@ -25,7 +25,7 @@ public class Concat implements RegEx{
 		String str2 = s.substring(startSecond,s.length());
 
 
-		if(first.matches(str1) && second.matches(str2)){
+		if(second.matches(str2)){
 			return true;
 		}
 		return false;
