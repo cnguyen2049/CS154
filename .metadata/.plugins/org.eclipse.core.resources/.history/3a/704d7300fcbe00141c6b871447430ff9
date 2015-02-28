@@ -1,0 +1,52 @@
+
+public class Iteration implements RegEx{
+		private RegEx iter;
+		public Iteration(RegEx r)
+		{
+			iter = r;
+		}
+		private int findSize(String s)
+		{
+			for(int i = 0; i<=s.length(); i++)
+			{
+				if(iter.matches(s.substring(0, i)))
+				{
+					//System.out.println(s.substring(0, i).length());
+					return s.substring(0, i).length();
+				}
+			}
+			return -1;
+		}
+		private boolean matchHelper(String s)
+		{
+			if(findSize(s)>=0)
+			{
+				int sizeOfMatch = findSize(s);
+				int begin = 0;
+				int end = sizeOfMatch;
+				while(end <= s.length())
+				{
+					if(iter.matches(s.substring(begin, end) ) )
+					{
+						begin += sizeOfMatch;
+						end += sizeOfMatch;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				System.out.println(end);
+				if(end-1==s.length()) return true;
+				else return false;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		public boolean matches(String s)
+		{
+			return matchHelper(s);
+		}
+	}

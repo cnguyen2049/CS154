@@ -1,0 +1,36 @@
+
+public class Iteration implements RegEx{
+	RegEx base;
+	public Iteration(RegEx base){
+		this.base = base;
+	}
+	
+	public int length(String s){
+		for(int i=0;i<s.length();i++){
+			if(base.matches(s.substring(0,i))){
+				return i;
+			}
+		}
+		return -1;
+	}
+	@Override
+	public boolean matches(String s) {
+		int len = length(s);
+		int i =0;
+		//System.out.println(index);
+		while(i<s.length())){	
+			System.out.println(s.substring(i,len));
+			if(!base.matches(s.substring(i,len))){
+				return false;
+			}
+			i = len;
+			len = len + len;
+		}
+		return true;
+	}
+	public String toString(){
+		return "" + base.toString();
+	}
+
+
+}

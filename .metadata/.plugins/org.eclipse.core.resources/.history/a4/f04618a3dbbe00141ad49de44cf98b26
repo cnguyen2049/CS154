@@ -1,0 +1,20 @@
+public class Choice implements RegEx{
+	RegEx first;
+	RegEx second;
+	public Choice (RegEx first, RegEx second){
+		this.first = first;
+		this.second = second;
+	}
+	
+
+	@Override
+	public boolean matches(String s) {
+		
+		if(first.matches(s) || second.matches(s)){
+			return true;
+		}
+
+		return false;
+	}
+
+}
