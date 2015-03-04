@@ -4,13 +4,15 @@ import java.util.Map;
 
 
 public class FSM {
-	private Map<Character,State> map = new HashMap();
+	private Map<Integer,State> map = new HashMap();
 	private int finalState = 0;
 	private int currentState = 0;
 	void addTransition(char token,int state,int newState){
-		State s = new State(state,newState);
-
-		map.put(token, s);
+		State s = new State(token,newState);
+		//System.out.println(s);
+		//System.out.println("State is here "+ s.getState());
+		
+		map.put(state, s);
 		
 	}
 	
@@ -18,25 +20,22 @@ public class FSM {
 	
 		for(int i = 0;i<s.length()-1;i++){
 			char symbol = s.charAt(i);
-			Character key = new Character(symbol);
-			System.out.println(map.get(currentState).map2);
+			String temp = "" + symbol;
+			int val = Integer.parseInt(temp);
 			if(map.get(currentState) != null){
-				try{
-				int val = map.get(currentState).map2.get(key);
-				currentState = val;
-				
-				}catch(Exception e){
-					System.out.println(e.getMessage());
-				}
-				//System.out.println(val);
-				//int tempState = map.get(currentState).getState();
-				//currentState = val;
+				map.get(currentState).map2.get(symbol);
+				System.out.println("Symbol is: " + map.get(currentState).map2.get(symbol));
+				currentState = map.get(currentState).getState();
+				System.out.println(map.get(currentState).getMap());
 			}
 			else{
 				currentState = -1;
 			}
+			//System.out.println(map);
+	    // System.out.println("Current state is :" + currentState);
 		}
-
+		//System.out.println("Current state is :" + currentState);
+		//System.out.println("THE FINAL STATE: " + finalState);
 		if(currentState == finalState){
 			return true;
 		}
@@ -49,29 +48,30 @@ public class FSM {
 	}
 
 	public class State{
-		private int state;
+		private char token;
 		private int newState;
-		private Map<Integer,Integer> map2 = new HashMap();
-		public State(int state,int newState){
-			this.state = state;
+		private Map<Character,Integer> map2 = new HashMap();
+		public State(char token,int newState){
+			this.token = token;
 			this.newState = newState;
+			setTranstition(token,newState);
 		}
 
-		public int getnewState(){
+		public int getState(){
 			return newState;
 		}
-		public int getState(){
-			return state;
+		public char getToken(){
+			return token;
 		}
-		public Map<Integer,Integer> getMap(){
+		public Map<Character,Integer> getMap(){
 			return map2;
 		}
-		public void setTranstition(int state,int newState){
-			if(map2.get(state) == null){
-				map2.put(state, newState);
+		public void setTranstition(char token,int newState){
+			if(map2.get(token) == null){
+				map2.put(token, newState);
 				//System.out.println(map2);
 			}else{
-				map2.put(state, newState);
+				map2.put(token, newState);
 				//System.out.println(map2);
 			}
 			//System.out.println(map2);
@@ -88,8 +88,7 @@ public static void main(String args []){
     m.addTransition('1', 2, 2);
     m.addTransition('0', 3, 3);
     m.addFinalState(3);
-	//State test = m.map.get(1);
-	//System.out.println(test.map2.get('1'));    
+    
     System.out.println("0011100: "+ m.accept("0011100"));
 //    System.out.println("01100: "+ m.accept("01100"));
 //    System.out.println("11100: "+ m.accept("11100"));
