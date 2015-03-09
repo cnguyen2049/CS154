@@ -1,61 +1,83 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 
 public class FSM {
-	private Map<Character,State> map = new HashMap();
-	private int finalState = 0;
+	Map<Character,State> map = new HashMap();
+	private ArrayList<Integer> finalState = new ArrayList<Integer>();
 	private int currentState = 0;
+	
 	void addTransition(char token,int state,int newState){
-		State s = new State(state,newState);
 
-		map.put(token, s);
-		
-	}
-	
-	public boolean accept (String s){
-	
-		for(int i = 0;i<s.length()-1;i++){
-			char symbol = s.charAt(i);
-			Character key = new Character(symbol);
-			System.out.println(map.get(currentState).map2);
-			if(map.get(currentState) != null){
-				try{
-				int val = map.get(currentState).map2.get(key);
-				currentState = val;
-				
-				}catch(Exception e){
-					System.out.println(e.getMessage());
-				}
-				//System.out.println(val);
-				//int tempState = map.get(currentState).getState();
-				//currentState = val;
-			}
-			else{
-				currentState = -1;
-			}
+		Character current = token;
+		if(map.get(current)==null){
+			State s1 = new State();
+			s1.setTransition(state, newState);
+			map.put(token, s1);
+		}
+		else{
+			State n = new State();
+			n.transition.putAll(map.get(current).transition);
+			n.setTransition(state,newState);
+			map.put(token, n);
 		}
 
-		if(currentState == finalState){
+	}
+	
+	void addTransitionHelper(int range1 , int range2,int state, int newState){
+		for(int i = range1;i<range2;i++){
+			Character insert = Character.forDigit(i, 10);
+			 addTransition(insert,state,newState);
+		}
+	}
+	
+
+	public boolean accept (String in){
+		int currentState = 0;
+	    String s = in;
+		for(int i = 0;i<=s.length()-1;i++){
+			char symbol = s.charAt(i);
+			Character temp  = symbol;
+			if(map.get(temp) != null){
+				State value = map.get(temp);
+				//System.out.println(value.transition.get(currentState));
+				if(value.transition.get(currentState)!=null){
+					int compare = value.transition.get(currentState);
+					currentState = compare;
+					//System.out.println("After condition: " + currentState);
+				}
+				else{
+					//System.out.println("Setting to negative");
+					currentState = -1;
+					
+				}
+			}
+			else{
+				//System.out.println("Enters here");
+				currentState = -1;
+				break;
+			}
+		}
+		//System.out.println(currentState);
+		if(finalState.contains(currentState)){
 			return true;
 		}
 		else{
 		return false;
 		}
+	
 	}
+
 	public void addFinalState(int number){
-		finalState = number;
+		finalState.add(number);
 	}
 
 	public class State{
 		private int state;
 		private int newState;
-		private Map<Integer,Integer> map2 = new HashMap();
-		public State(int state,int newState){
-			this.state = state;
-			this.newState = newState;
-		}
+		private Map<Integer,Integer> transition = new Hashtable<Integer, Integer>();
 
 		public int getnewState(){
 			return newState;
@@ -64,37 +86,18 @@ public class FSM {
 			return state;
 		}
 		public Map<Integer,Integer> getMap(){
-			return map2;
+			return transition;
 		}
-		public void setTranstition(int state,int newState){
-			if(map2.get(state) == null){
-				map2.put(state, newState);
-				//System.out.println(map2);
-			}else{
-				map2.put(state, newState);
-				//System.out.println(map2);
-			}
-			//System.out.println(map2);
+		public void setTransition(int state,int newState){
+				transition.put(state, newState);
+				
 		}
-		
+		public void printOut(){
+			System.out.println(transition);
+		}
 	}
 
-public static void main(String args []){
-	FSM m = new FSM();
-    m.addTransition('0', 0, 1);
-    m.addTransition('0', 1, 1);
-    m.addTransition('1', 1, 2);
-    m.addTransition('0', 2, 3);
-    m.addTransition('1', 2, 2);
-    m.addTransition('0', 3, 3);
-    m.addFinalState(3);
-	//State test = m.map.get(1);
-	//System.out.println(test.map2.get('1'));    
-    System.out.println("0011100: "+ m.accept("0011100"));
-//    System.out.println("01100: "+ m.accept("01100"));
-//    System.out.println("11100: "+ m.accept("11100"));
-//    System.out.println("001110011: "+ m.accept("001110011"));
-	}
+
 }
 
 
