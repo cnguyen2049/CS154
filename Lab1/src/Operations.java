@@ -71,7 +71,23 @@ public static Map<Integer,String> Unicode;
 		return out;
 		
 	}
-	
+	 public static UnaryOperator<Double> iter(UnaryOperator<Double> f, int n) {
+	      return (x) -> {
+	         if (n == 0) return x;
+	         return f.apply(iter(f, n - 1).apply(x));
+	      };
+	   }
+	   public static UnaryOperator<Double> iter2(UnaryOperator<Double> f, int n) {
+		     
+		      return (x) -> {
+		         Double result = 0.0;
+		         for(int i = 0; i < n; i++) {
+		            result = f.apply(result);
+		            System.out.println(result);
+		         }
+		         return result;
+		      };
+		   }
 	public static <T> Set<T> map(Set<T> a, UnaryOperator<T>f){
 		Set<T> out = new HashSet<T>();
 		for(T e:a){

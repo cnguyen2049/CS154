@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.UnaryOperator;
 
 
 public class OperationsTester {
@@ -41,9 +42,12 @@ public class OperationsTester {
 	    System.out.println("TESTING EXERCISE 2");
 	    System.out.println();  
 		Set<Integer> a = new HashSet<Integer>();
-		      
+		//Set<Double> d = new HashSet<Double>();
 		for(int i = 0; i < 20; i++) a.add(i * 2);
-		   
+		//d.add(2.0);
+		//d.add(3.0);
+		 Operations.iter(x->2*x, 3);
+
 		 Set<Integer>  b = Operations.filter(a,(Integer x)->x%4==0);
 		 Set<Integer>  c = Operations.filter(a,(Integer x)->x%6==0);
 		 Set<Integer> d = Operations.map(b, (x)->5 * x);
@@ -89,6 +93,8 @@ public class OperationsTester {
 		  Map<Integer,String> map2= Operations.Unicodemap(4);
 		  Map<Integer,String> map3= Operations.Unicodemap(0);
 		  System.out.println("The unicode map is = " + map + " "+ map2 + " " + map3);
+		  UnaryOperator g = Operations.iter2((Double x)->{return 2 * x;}, 5);
+	      System.out.println("g(2) = " + g.apply(2.0));
 		}
 
 
