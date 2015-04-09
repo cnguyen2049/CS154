@@ -1,0 +1,5 @@
+public class Concat extends Result implements RegEx {
+	private Result kid0,kid1;
+	
+	
+}

@@ -1,0 +1,8 @@
+
+public class Concatination extends Result {
+	private Result kid0, kid1;
+	
+	public void setConcatination(){
+		
+	}
+}

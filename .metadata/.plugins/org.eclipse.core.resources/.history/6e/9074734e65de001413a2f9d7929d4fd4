@@ -1,0 +1,11 @@
+public class Choice extends Result {
+	private Result kid0;
+	
+	public void setChoice(Result result){
+		this.kid0 = result;
+	}
+	
+	public Result getChoice(){
+		return kid0;
+	}
+}

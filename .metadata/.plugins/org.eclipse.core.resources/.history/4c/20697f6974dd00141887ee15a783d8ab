@@ -1,0 +1,15 @@
+import java.util.function.*;
+public class Parser implements UnaryOperator<Result>{
+	private Parser parser;
+	
+	@Override
+	public Result apply(Result t) {
+		return parser.apply(t);
+	}
+
+	public void setParser(Object object) {
+				
+	}
+	
+	
+}

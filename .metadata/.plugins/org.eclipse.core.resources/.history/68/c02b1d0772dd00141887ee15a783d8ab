@@ -1,0 +1,9 @@
+import java.util.function.*;
+public class Parser implements UnaryOperator<Result>{
+	
+	@Override
+	public Result apply(Result t) {
+		return apply(t);
+	}
+
+}
