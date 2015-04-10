@@ -1,0 +1,4 @@
+
+public class Literal extends Result{
+	private String token;
+}

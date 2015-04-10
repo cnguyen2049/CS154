@@ -1,0 +1,4 @@
+public class Option  {
+	private RegEx base;
+	public boolean matches(String s) { return s.isEmpty() || base.matches(s); }
+}

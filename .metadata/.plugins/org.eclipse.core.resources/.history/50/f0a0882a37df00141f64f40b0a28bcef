@@ -1,0 +1,10 @@
+
+public class Concatination extends Result {
+	private Result kid0, kid1;
+	public Result choice;
+	
+	
+	public String toString(){
+		return "" + kid0 + "" + kid1;
+	}
+}

@@ -1,0 +1,14 @@
+
+public class Literal extends Result{
+	private String token;
+	public Result choice;
+
+	public String toString(){
+		if(!token == (null)){
+		return "<" + token + ">";
+		}
+		else{
+			return "false";
+		}
+	}
+}

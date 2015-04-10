@@ -1,0 +1,8 @@
+public class Choice extends Result {
+	private Result kid0;
+	public Result choice;
+	
+	public String toString(){
+		return "" + kid0.toString();
+	}
+}

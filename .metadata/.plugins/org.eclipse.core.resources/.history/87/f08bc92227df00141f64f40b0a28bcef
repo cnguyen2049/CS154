@@ -1,0 +1,5 @@
+public class Option extends Result {
+	private Result kid;
+	private Result choice;
+	
+}
