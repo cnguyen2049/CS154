@@ -5,6 +5,6 @@ public class Concatination extends Result {
 	
 	
 	public String toString(){
-		return "[" + kid0 + "~" + kid1 + " ]";
+		return "[ ~ " + kid0 + kid1 + " ]";
 	}
 }

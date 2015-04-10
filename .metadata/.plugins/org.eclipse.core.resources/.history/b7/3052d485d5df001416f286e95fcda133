@@ -35,13 +35,13 @@ public class Combinators {
                    return answer.kid0;
                }
 
-               answer.unseen = answer.kid0.unseen;
-               answer.kid1 = p2.apply(answer.kid0);
+               //answer.unseen = answer.kid0.unseen;
+               answer.kid1 = p2.apply(result);
                if (answer.kid1.fail) {
                    return answer.kid1;
                }
-              
-              answer.unseen = answer.kid1.unseen;
+
+               answer.unseen = answer.kid1.unseen;
                return answer;
 		});
 		return parser;

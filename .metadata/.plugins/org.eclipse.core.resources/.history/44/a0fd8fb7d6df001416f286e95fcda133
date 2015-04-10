@@ -40,8 +40,8 @@ public class Combinators {
                if (answer.kid1.fail) {
                    return answer.kid1;
                }
-              
-              answer.unseen = answer.kid1.unseen;
+
+               answer.unseen = answer.kid1.unseen;
                return answer;
 		});
 		return parser;

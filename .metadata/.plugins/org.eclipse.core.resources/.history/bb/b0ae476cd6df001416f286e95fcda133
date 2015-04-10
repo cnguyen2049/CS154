@@ -32,16 +32,16 @@ public class Combinators {
                Concatination answer = new Concatination();
                answer.kid0 = p1.apply(result);
                if (answer.kid0.fail)  {
-                   return answer.kid0;
+                   return answer;
                }
 
                answer.unseen = answer.kid0.unseen;
-               answer.kid1 = p2.apply(answer.kid0);
+               answer.kid1 = p2.apply(result);
                if (answer.kid1.fail) {
-                   return answer.kid1;
+                   return answer;
                }
-              
-              answer.unseen = answer.kid1.unseen;
+
+               answer.unseen = answer.kid1.unseen;
                return answer;
 		});
 		return parser;
