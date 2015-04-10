@@ -1,0 +1,10 @@
+
+
+public class Concatination extends Result {
+	public Result child1, child2;
+	
+	
+	public String toString(){
+		return "[ " + child1.toString() + "~" + child2.toString() + " ]";
+	}
+}

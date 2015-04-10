@@ -1,0 +1,10 @@
+
+
+public class Concatination extends Result {
+	public Result first, second;
+	
+	
+	public String toString(){
+		return "[ ~ " + first + second + " ]";
+	}
+}

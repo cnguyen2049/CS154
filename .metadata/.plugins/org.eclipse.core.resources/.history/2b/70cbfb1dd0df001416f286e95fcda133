@@ -1,0 +1,67 @@
+
+import java.util.*;
+import java.util.function.*;
+public class Combinators {
+   
+   // returns p1 | p2
+   public static Parser alt(Parser p1, Parser p2) {
+      Parser parser = new Parser();
+      parser.setParser(
+         result->{
+            if (result.fail)return result; 
+            Choice answer = new Choice();
+            answer.choice = p1.apply(result);
+            if (answer.choice.fail)  {
+               answer.choice = p2.apply(result);
+            }
+            if (answer.choice.fail) return answer.choice;
+            answer.unseen = answer.choice.unseen;
+            return answer;
+      });
+      return parser;
+   }
+   
+   public static Parser seq(Parser p1, Parser p2) {
+	   Parser parser = new Parser();
+	      parser.setParser(
+	         result->{
+	            if (result.fail)return result; 
+	            Concatination answer = new Concatination();
+	            answer.kid0 = p1.apply(result);
+	            if (answer.kid0.fail){
+	            	return answer.kid0;
+	            }
+	            
+	            answer.kid1 = p2.apply(answer.kid0);
+	            if (answer.kid1.fail){
+	            	return answer.kid1;
+	            }
+	            //answer.unseen = answer.kid1.unseen;
+	            return answer;
+	      });
+	      return parser;
+   }
+   public static Parser regEx(String regex) {
+	   Parser parser = new Parser();
+	   parser.setParser(
+       result->{
+    	  if (result.fail)return result;
+    	  Literal answer = new Literal();
+          if(result.unseen.get(0).matches(regex)){
+        	  String value = result.unseen.get(0);
+        	  answer.token = value;
+
+        	  result.unseen.remove(0);
+
+          	} 
+          else{
+        	  answer.unseen = result.unseen;
+          }
+          //System.out.println("Unseen is " + result.pending());
+          return answer;
+        
+     });
+     return parser;
+	   
+   }
+}

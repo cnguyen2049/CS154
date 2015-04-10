@@ -1,0 +1,75 @@
+
+import java.util.*;
+import java.util.function.*;
+public class Combinators {
+   
+   // returns p1 | p2
+   public static Parser alt(Parser p1, Parser p2) {
+      Parser parser = new Parser();
+      parser.setParser(
+         result->{
+            if (result.fail)return result; 
+            Choice answer = new Choice();
+            answer.choice = p1.apply(result);
+            if (answer.choice.fail)  {
+               answer.choice = p2.apply(result);
+            }
+            if (answer.choice.fail) return answer.choice;
+            answer.unseen = answer.choice.unseen;
+            return answer;
+      });
+      return parser;
+   }
+   
+   public static Parser seq(Parser p1, Parser p2) {
+		Parser parser = new Parser();
+	      parser.setParser(
+	 	         result->{
+	 	            if (result.fail)return result; 
+	 	            Concatination answer = new Concatination();
+	 	            answer.unseen = answer.child1.unseen;
+	 	            answer.child1 = p1.apply(result);
+	 	            if (answer.child1.fail){
+	 	            	return answer.child1;
+	 	            }
+	 	            
+	 	            answer.child2 = p2.apply(answer.child2);
+	 	            if (answer.child2.fail){
+	 	            	return result;
+	 	            }
+	 	            answer.unseen = answer.child2.unseen;
+	 	            return answer;
+		});
+		return parser;
+   }
+   public static Parser regEx(String regex) {
+	   Parser parser = new Parser();
+	   parser.setParser(
+       result->{
+    	  if (result.fail)return result;
+    	  
+    	  Literal literal = new Literal();
+          if (result.unseen.size() != 0) {
+        	  if(result.unseen.get(0).matches(regex)){
+        		  String value = result.unseen.get(0);
+        		  literal.token = value;
+
+        		  result.unseen.remove(0);
+
+          		} 
+        	  else{
+        		  literal.unseen = result.unseen;
+        	  }
+          }
+          else{
+        	  result.fail = true;
+        	  return result;
+          }
+          //System.out.println("Unseen is " + result.pending());
+          return literal;
+        
+     });
+     return parser;
+	   
+   }
+}
