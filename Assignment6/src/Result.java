@@ -15,7 +15,9 @@ public class Result {
       unseen = new ArrayList<String>(); 
       for(int i = 0; i < a.length; i++) {
          unseen.add(a[i]);
+         //System.out.println(a[i]);
       }
+      //System.out.println(a);
    }
    public Result(String s) {
       this(s, "\\s+");

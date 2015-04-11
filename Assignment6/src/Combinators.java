@@ -41,7 +41,8 @@ public class Combinators {
                    return answer.kid1;
                }
               
-              answer.unseen = answer.kid1.unseen;
+               answer.unseen = answer.kid1.unseen;
+               //System.out.println(answer.unseen);
                return answer;
 		});
 		return parser;
@@ -51,23 +52,31 @@ public class Combinators {
 	   parser.setParser(
        result->{
     	  Literal answer = new Literal();
-    	  if (result.fail)return result;
+    	  if (result.fail){
+    		  result.fail = true;
+    		  return result;
+    	  }
     	  //Literal answer = new Literal();
     	  if(result.pending() ==0){
     		  answer.fail = true;
     		  return answer;
     	  }
-          if(result.unseen.get(0).matches(regEx)){
-        	  String value = result.unseen.get(0);
+    	  String value = result.unseen.get(0);
+    	  
+          if(value.matches(regEx)){
+        	  System.out.println("Executes!!!");
         	  answer.token = value;
-
         	  result.unseen.remove(0);
-
+        	  answer.unseen = result.unseen;
+        	 
           	} 
           else{
+        	  System.out.println("Does this execute");
+        	  System.out.println(result.unseen);
+        	  answer.fail = true;
         	  answer.unseen = result.unseen;
           }
-          //System.out.println("Unseen is " + result.pending());
+          //System.out.println(answer.token);
           return answer;
         
      });
