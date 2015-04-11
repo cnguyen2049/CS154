@@ -64,14 +64,14 @@ public class Combinators {
     	  String value = result.unseen.get(0);
     	  
           if(value.matches(regEx)){
-        	 
+        	  System.out.println("Executes!!!");
         	  answer.token = value;
         	  result.unseen.remove(0);
         	  answer.unseen = result.unseen;
         	 
           	} 
           else{
-        	 
+        	  System.out.println("Does this execute");
         	  System.out.println(result.unseen);
         	  answer.fail = true;
         	  answer.unseen = result.unseen;
