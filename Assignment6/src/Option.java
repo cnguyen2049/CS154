@@ -1,7 +1,10 @@
+
 public class Option extends Result {
-	private Result kid;
-	private Result choice;
-	
+	public Result kid;
+
+	public String toString(){
+		return "[" + kid +"]";
+	}
 	
 }
 

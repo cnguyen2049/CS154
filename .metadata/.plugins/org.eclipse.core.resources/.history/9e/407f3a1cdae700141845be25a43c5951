@@ -1,0 +1,14 @@
+import java.lang.reflect.*;
+public class MetaMachine {
+	public String execute(String ... args) throws Exception {
+		try{
+	         Class c = Class.forName(args[0]);  // find & load a class
+	         System.out.print(c.getName());
+	         Method meth = c.getMethod(args[1], null);
+	         meth.invoke(, null);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return "None";
+	}
+}

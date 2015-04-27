@@ -1,0 +1,55 @@
+package meta;
+
+import java.util.ArrayList;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class RecClosures {
+	public static Predicate<Integer> union(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) || memB.test(n);
+	}
+	public static Predicate<Integer> intersect(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) && memB.test(n);
+	}
+	public static Predicate<Integer> minus(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) && !memB.test(n);
+	}
+	public static BiPredicate<Integer,Integer> carticianProduct (Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (m,n) -> memA.test(m) && memB.test(n);
+	}
+	public static Function<Integer, Integer> union2(Function<Integer, Integer> enumA, Function<Integer, Integer> enumB){
+		return (x) -> {   
+		       if(x %2==0){ 
+		    	   enumA.apply(x);
+		       }
+		       else{
+		    	   enumB.apply(x);
+		       }
+			return x;
+		};
+	}
+	
+	public static boolean isSmall(Integer n) { return n < 10; }
+	public static boolean divBy5(Integer n) { return n % 5 == 0; }
+	
+
+	
+	public static void main(String args[]) {
+		Function<Integer, Integer> func1 = x -> x * 2;
+		Function<Integer, Integer> func2 = x -> x * 5;
+		Function<Integer,Integer> mem2 = union2(func1, func2);
+		Predicate<Integer> mem = union(RecClosures::isSmall, RecClosures::divBy5);
+		for(int i = 0; i < 21; i++) {
+			System.out.println("mem(" + i + ") = " + mem.test(i));
+		}
+	}
+
+	}
+
+		
+

@@ -1,0 +1,40 @@
+package meta;
+
+import java.util.ArrayList;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class RecClosures {
+	public static Predicate<Integer> union(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) || memB.test(n);
+	}
+	public static Predicate<Integer> intersect(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) && memB.test(n);
+	}
+	public static Predicate<Integer> minus(Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (n) -> memA.test(n) && !memB.test(n);
+	}
+	public static BiPredicate<Integer,Integer> carticianProduct (Predicate<Integer> memA, Predicate<Integer> memB){
+		
+		return (m,n) -> memA.test(m) && memB.test(n);
+	}
+	public static Function<Integer, Integer> union(Function<Integer, Integer> enumA, Function<Integer, Integer> enumB){
+		return (x)  -> {   
+		       if(x %2==0){ 
+		    	   enumA.apply(x);
+		       }
+		       else{
+		    	   enumB.apply(x);
+		       }
+		};
+	}
+			
+
+	}
+		
+	
+

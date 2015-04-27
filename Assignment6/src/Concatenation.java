@@ -1,6 +1,5 @@
 
-
-public class Concatination extends Result {
+public class Concatenation extends Result{
 	public Result kid0, kid1;
 	
 	

@@ -20,19 +20,19 @@ public class ExpParsers {
 	}
    public static void testExpParsers() {
 	   String s = "42";
-//	   test(ExpParsers.number, s);
-//	   s = "29z";
-//	   test(ExpParsers.number, s);
-//	   s = "*";
-//	   test(ExpParsers.operator, s);
-//	   s = "-";
-//	   test(ExpParsers.operator, s);
+	   test(ExpParsers.number, s);
+	   s = "29z";
+	   test(ExpParsers.number, s);
+	   s = "*";
+	   test(ExpParsers.operator, s);
+	   s = "-";
+	   test(ExpParsers.operator, s);
 	   s = "42 + 91 * 13 + 2";
 	   test(ExpParsers.exp, s);
-//	   s = "123";
-//	   test(ExpParsers.exp, s);
-//	   s = "15 * 6 - 10";
-//	   test(ExpParsers.exp, s);
+	   s = "123";
+	   test(ExpParsers.exp, s);
+	   s = "15 * 6 - 10";
+	   test(ExpParsers.exp, s);
 	}
    public static void main(String args []){
 	   testExpParsers();
