@@ -1,0 +1,41 @@
+
+public class Lab4 {
+	
+	public static void multTwo(String n, String m){
+		VirtualMachine vm = new VirtualMachine();
+		String sum1 = "load n, " + n;
+		String sum2 = "load m, " + m;
+		vm.add(sum1);
+		vm.add(sum2);
+		vm.add("load z, 0");
+		vm.add("loop n");
+		vm.add("loop m");
+        vm.add("inc z");
+        vm.add("end");
+        vm.add("end");
+        vm.run();
+	}
+	
+	public static void minusTwo(String m, String n){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load w, 0");
+		String sum1 = "load m, " + m;
+		String sum2 = "load n, " + n;
+		vm.add(sum1);
+		vm.add(sum2);
+		
+		vm.add("loop n");
+		vm.add("load v, w");
+		vm.add("inc w");
+        vm.add("end");
+
+        vm.add("load m, v");
+        vm.run();
+	}
+	
+	public static void main(String args []){
+		//multTwo("6","4");
+		minusTwo("4","6");
+	}
+}
+

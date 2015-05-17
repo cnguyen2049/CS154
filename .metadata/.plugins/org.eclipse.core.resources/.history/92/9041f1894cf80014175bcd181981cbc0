@@ -1,0 +1,14 @@
+
+public class Hwk8Tester {
+	public static void main(String args []){
+		addTwo("6","4");
+		System.out.println("==========Lab4 =================");
+		System.out.println("==========Multiply two numbers =================");
+		System.out.println("Answer of multiply 6 * 4 is ===" + multTwo("6","4"));		
+		System.out.println("==========Max of Two numbers =================");
+		System.out.println("Answer of Max is ===" + maxTwo("6","4"));
+		System.out.println("==========Subtract two numbers =================");
+		System.out.println("Answer to Minus 6 - 4 is ===" + minusTwo("6","4"));
+	}
+
+}

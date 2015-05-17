@@ -29,7 +29,14 @@ public class TuringMachine {
     public void run() {
         while (!finalStates.contains(state)) {
             System.out.println("state = " + state + " index = " + tape.getHead());
-
+            Action next = getNextAction(state,tape.read());
+            if(next == null){
+            	System.out.println("next = null. Quit");
+            	return;
+            }
+            state = next.getState();
+            tape.write(next.getBit());
+            tape.moveHead(next.getDirection());
         }
         System.out.println("Program halted. Result: " + tape.result());
     }
@@ -37,6 +44,9 @@ public class TuringMachine {
     private Action getNextAction(int currentState, int currentBit) {
         for (Trigger t : program.keySet()) {
             if ((t.getState() == state) && (t.getCurrentBit() == currentBit)) {
+            	 if (currentBit == 'B' || currentBit == 'A' || currentBit == 'R') {
+                     System.out.print("(" + currentState + ", " + currentBit + ") " + "=> ");
+                 }
                 return program.get(t);
             }
         }

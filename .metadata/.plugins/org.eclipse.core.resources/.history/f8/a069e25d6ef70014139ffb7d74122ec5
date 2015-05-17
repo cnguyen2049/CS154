@@ -1,0 +1,33 @@
+
+public class Lab8 {
+	
+	public static String doubleFunc(String x){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load z, " + x);
+		vm.add("loop " + x);
+		vm.add("inc z");
+		vm.add("end");
+		vm.run();
+		vm.printInfo();
+		return Integer.toString(vm.variables.get("z"));
+	}
+	
+	public static String exp(String m){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load x, 1");
+		System.out.println(vm.variables);
+		vm.add("loop " + m);
+		vm.add("load z, 1");
+		vm.add("loop 1" );
+		vm.add("inc z");
+		vm.add("end");
+		vm.add("end");
+		vm.run();
+		vm.printInfo();
+		return "";
+	}
+	public static void main(String args []){
+		//doubleFunc("10");
+		exp("5");
+	}
+}

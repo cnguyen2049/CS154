@@ -1,0 +1,75 @@
+
+public class Lab4 {
+	
+	public static void multTwo(String n, String m){
+		VirtualMachine vm = new VirtualMachine();
+		String sum1 = "load n, " + n;
+		String sum2 = "load m, " + m;
+		vm.add(sum1);
+		vm.add(sum2);
+		vm.add("load z, 0");
+		vm.add("loop n");
+		vm.add("loop m");
+        vm.add("inc z");
+        vm.add("end");
+        vm.add("end");
+        vm.run();
+	}
+	
+	public static void minusOne(String m, String n){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load w, 0");
+		String cmd1 = "load m, " + m;
+		String cmd2 = "load n, " + n;
+		vm.add(cmd1);
+		vm.add(cmd2);
+		
+		vm.add("loop n");
+		vm.add("load v, w");
+		vm.add("inc w");
+        vm.add("end");
+        vm.add("load m, v");
+        vm.run();
+	}
+	
+	public static void minusTwo(String x, String y){
+		VirtualMachine vm = new VirtualMachine();
+		//vm.add("load z, 0");
+//		String cmd1 = "load x, " + x;
+//		String cmd2 = "load y, " + y;
+//		vm.add(cmd1);
+//		vm.add(cmd2);
+		vm.add("load v, " + x);
+		vm.add("loop " + y);
+		vm.add("load w, 0");
+		vm.add("loop x");
+		vm.add("load v, w");
+		vm.add("inc w");
+		vm.add("end");
+		vm.add("load y, v");
+        vm.add("end");
+        vm.add("load z, v");
+        vm.run();
+	}
+	
+	public static void maxTwo(String x, String y){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load w, 0");
+		String sum1 = "load m, " + x;
+		String sum2 = "load n, " + y;
+		vm.add(sum1);
+		vm.add(sum2);
+		
+		vm.add("loop n");
+		vm.add("inc w");
+        vm.add("end");
+        vm.run();
+	}
+	public static void main(String args []){
+		//multTwo("6","4");
+		//minusOne("6","4");
+		//maxTwo("6","4");
+		minusTwo("6","4");
+	}
+}
+

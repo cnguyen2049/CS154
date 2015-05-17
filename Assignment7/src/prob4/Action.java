@@ -2,12 +2,12 @@ package prob4;
 
 public class Action {
     private int newState;
-    private int newBit;
+    private char bit;
     private int direction;
 
-    public Action(int state, int bit, int direction) {
-        newState = state;
-        newBit = bit;
+    public Action(int state, char bit, int direction) {
+        this.newState = state;
+        this.bit = bit;
         this.direction = direction;
     }
 
@@ -15,8 +15,8 @@ public class Action {
         return newState;
     }
 
-    public int getBit() {
-        return newBit;
+    public char getBit() {
+        return bit;
     }
 
     public int getDirection() {
@@ -24,6 +24,6 @@ public class Action {
     }
 
     public String toString() {
-        return "state: " + newState + " bit: " + newBit + " direction: " + direction;
+        return "state: " + newState + " bit: " + bit + " direction: " + direction;
     }
 }

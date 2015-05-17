@@ -1,0 +1,10 @@
+
+public class Lab8 {
+	
+	public static String doubleFunc(String x){
+		VirtualMachine vm = VirtualMachine();
+		vm.add("load x, " + x);
+		
+		return "";
+	}
+}

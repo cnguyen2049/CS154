@@ -1,0 +1,135 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class Command {
+	private String label;
+	private String opcode;
+	private String arg1;
+	private String arg2;
+	private int target;
+	private int pc;
+	private int count;
+	private static String pattern = "(([A-Z]+):\\s)?(((load) ([a-z]+),\\s?([a-z]+|[0-9]+))|((inc) ([a-z]+))|(loop) ([a-z]+|[0-9]+)|((goto) ([A-Z]+))|(end))";
+
+	private Pattern cmmdPattern;
+	
+	
+	public Command(String command, int pc){
+		setPc(pc);
+		
+		
+		//System.out.println(command);
+		cmmdPattern = Pattern.compile(pattern);
+		Matcher m = cmmdPattern.matcher(command);
+
+		if (m.find()) {
+//			int i=0;
+//			while(i<20){
+//				if (m.group(i) != null) {
+//	                System.out.print("i. = " + i);
+//	               System.out.println(m.group(i));
+//	                label = m.group(i);
+//	            }
+//				i++;
+            if (m.group(1) != null) {
+                System.out.print("1. ");
+               System.out.println(m.group(1));
+                label = m.group(1);
+            }
+            if (m.group(5) != null) {
+                System.out.print("5. ");
+                System.out.println(m.group(5));
+                opcode = m.group(5);
+            }
+            if (m.group(6) != null) {
+                System.out.print("6. ");
+                System.out.println(m.group(6));
+                arg1 = m.group(6);
+            }
+            if (m.group(7) != null) {
+                System.out.print("7. ");
+                System.out.println(m.group(7));
+                arg2 = m.group(7);
+            }
+            if (m.group(9) != null) {
+                System.out.print("9. ");
+                System.out.println(m.group(9));
+                arg2 = m.group(9);
+            }
+            if (m.group(10) != null) {
+                System.out.print("10. ");
+                System.out.println(m.group(10));
+                arg2 = m.group(10);
+            }
+            if (m.group(11) != null) {
+                System.out.print("11. ");
+                System.out.println(m.group(11));
+                arg2 = m.group(11);
+            }
+            if (m.group(12) != null) {
+                System.out.print("12. ");
+                System.out.println(m.group(12));
+                arg2 = m.group(12);
+            }
+			}
+        else{
+        	System.out.println("NULLL");
+        }
+
+        this.pc = pc;
+
+	}
+	public String getOpcode() {
+		return opcode;
+	}
+	public void setOpcode(String opcode) {
+		this.opcode = opcode;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getArg1() {
+		return arg1;
+	}
+	public void setArg1(String arg1) {
+		this.arg1 = arg1;
+	}
+	public String getArg2() {
+		return arg2;
+	}
+	public void setArg2(String arg2) {
+		this.arg2 = arg2;
+	}
+	public int getTarget() {
+		return target;
+	}
+	public void setTarget(int target) {
+		this.target = target;
+	}
+	public int getPc() {
+		return pc;
+	}
+	public void setPc(int pc) {
+		this.pc = pc;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public Pattern getCmmdPattern() {
+		return cmmdPattern;
+	}
+	public void setCmmdPattern(Pattern cmmdPattern) {
+		this.cmmdPattern = cmmdPattern;
+	}
+	public String toString(){
+		return "WTFF" ;
+	}
+
+}

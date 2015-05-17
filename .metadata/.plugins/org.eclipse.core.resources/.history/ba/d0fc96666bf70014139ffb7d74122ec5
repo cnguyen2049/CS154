@@ -1,0 +1,16 @@
+
+public class Lab8 {
+	
+	public static String doubleFunc(String x){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load z, " + x);
+		vm.add("loop z");
+		vm.add("inc z");
+		//vm.printInfo();
+		return Integer.toString(vm.variables.get("z"));
+	}
+	
+	public static void main(String args []){
+		doubleFunc("5");
+	}
+}

@@ -1,0 +1,11 @@
+
+public class Lab8 {
+	
+	public static String doubleFunc(String x){
+		VirtualMachine vm = new VirtualMachine();
+		vm.add("load x, " + x);
+		vm.add("loop x");
+		vm.add("inc x");
+		return Integer.toString(vm.variables.get("x"));
+	}
+}

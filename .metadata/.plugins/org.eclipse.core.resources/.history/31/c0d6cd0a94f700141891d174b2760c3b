@@ -1,0 +1,5 @@
+load x, 10
+load y, 0
+loop x
+inc y
+end

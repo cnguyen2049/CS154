@@ -1,0 +1,58 @@
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.regex.*;
+public class VirtualMachine {
+	private String regEx = "([A-Z:]+)?([a-z]+)([a-z]+)";
+	private Pattern pattern = Pattern.compile(regEx);
+	private ArrayList<Command> program = new ArrayList<Command>();
+	private Map<String,Integer> variables = new HashMap<String,Integer>();
+	private int pc;
+	private int executions = 0;
+	
+	public VirtualMachine(){
+		this.pc = 0;
+		this.program = new ArrayList<Command>();
+		this.variables = new HashMap<String,Integer>();
+	}
+	
+	public void add(String cmmd){
+		program.add(new Command(cmmd,pc++));
+	}
+	
+	public void compile(String file){
+        try {
+            FileReader input = new FileReader(file);
+            BufferedReader reader = new BufferedReader(input);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                program.add(new Command(line, pc++));
+            }
+            reader.close();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+	}
+	
+    public void execute(Command cmmd){
+        //the command to run
+    	String op = cmmd.getOpcode();
+        if(cmmd.getOpcode().equals("load")){
+        	variables.put(cmmd.getArg1(), Integer.parseInt(cmmd.getArg2()));
+        }
+        else if (cmmd.getOpcode().equals("inc")){;}
+        else if (cmmd.getOpcode().equals("goto")){;}
+        else if (cmmd.getOpcode().equals("loop")){;}
+        else if (cmmd.getOpcode().equals("end")){;}
+        else {}//error, unrecognized opcode
+    }
+	public void run(){
+		pc = 0;
+		while(pc < program.size()){
+			execute(program.get(pc++));
+		}
+	}
+}

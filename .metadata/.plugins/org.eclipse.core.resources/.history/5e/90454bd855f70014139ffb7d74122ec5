@@ -1,0 +1,20 @@
+
+public class Lab4 {
+	
+	public static void multTwo(String n, String m){
+		VirtualMachine vm = new VirtualMachine();
+		String sum1 = "load x, " + n;
+		String sum2 = "load y, " + m;
+		vm.add(sum1);
+		vm.add(sum2);
+		vm.add("loop x");
+        vm.add("inc y");
+        vm.add("end");
+        vm.run();
+	}
+	
+	public static void main(String args []){
+		multTwo("6","4");
+	}
+}
+}
